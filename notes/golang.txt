@@ -1,0 +1,122 @@
+//////////////////////////////////////////////////////////
+Printf verbs
+
+%d 		decimal integer
+%x, %o, %b 	integer in hexade cimal, octal, binar y
+%f, %g, %e 	floating-point number: 3.141593 3.141592653589793 3.141593e+00
+%t 		boolean: true or false
+%c 		rune (Unicode code point)
+%s 		string
+%q 		quoted string "abc" or rune 'c'
+%v 		any value in a natural for mat
+%T 		type of any value
+%% 		literal percent sign (no operand)
+
+** When a map is passed to a function, the function receives a copy of the reference, so any changes the called function makes to the underlying date structure will be visible through the caller's map reference too.
+
+** Split is the opposite of strings.Join
+
+GO KEY WORDS
+##############
+break
+case
+chan
+const
+continue
+
+default
+defer
+else
+fallthrough
+for
+
+func
+go
+goto
+if
+import
+
+interface
+map
+package
+range
+return
+
+select
+struct
+switch
+type
+var
+
+PREDECLARED NAMES:
+##################
+Constants:  true false iota nil
+
+Types:      int int8 int16 int32 int64
+            uint uint8 uint16 uint32 uint64 uintptr
+            float32 float64 complex128 complex64
+            bool byte rune string error
+
+Functions:  make len cap new append copy close delete
+            complex real imag
+            panic recover
+
+DECLARATIONS:
+##############
+
+var, const, type, func
+
+VARIABLE DECLARATIONS:
+#####################
+
+var name type = expression
+
+If the expression is omitted, the initial value is the zero value for the type, which is 0 for numbers, false for booleans, "" for strings, and nil for interfaces and reference types (slice, pointer, map, channel, function). The zero value of an aggregate type like an array or a struct has the zero value of all of its elements or fields.
+
+NO DANGLING POINTERS:
+#####################
+
+It is perfectly safe for a function to return the address of a local variable. For instance, in the code below, the local variable v created by this particular call to f will remain in existence even after the call has returned, and the pointer p will still refer to it:
+
+var p = f()
+
+func f() *int {
+    v := 1
+    return &v
+}
+
+#######
+fmt.Println(f() == f()) // "false"
+#######
+
+func incr(p *int) int {
+    *p++ // increments what p points to; does not change p
+    return *p
+}
+
+v := 1
+incr(&v)                    // side effect: v is now 2
+fmt.Println(incr(&v))       // "3" (and v is 3)
+
+#####
+new
+#####
+p := new(int)       // p, of type *int, points to an unnamed int variable
+fmt.Println(*p)     // "0"
+*p = 2              // sets the unnamed int to 2
+fmt.Println(*p)     // "2"
+
+the two newInt functions below have identical behaviors.
+func newInt() *int {
+    return new(int)
+}
+
+func newInt() *int {
+    var dummy int
+    return &dummy
+}
+
+Each call to new returns a distinct variable with a unique address:
+p := new(int)
+q := new(int)
+fmt.Println(p == q) // "false"

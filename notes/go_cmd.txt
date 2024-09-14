@@ -1,0 +1,112 @@
+Intalling:
+
+Windows: Download installer from the official go.dev site
+
+Linux: sudo apt install golang-go
+
+export PATH=$PATH:/usr/local/go/bin
+
+/////////
+Commands
+/////////
+
+go version
+go mod init package/name
+go run .
+go help
+go mod tidy
+go mod help
+go run .
+
+
+code/packages/modules
+The "gopls" command is not available. Run "go install -v golang.org/x/tools/gopls@latest" to install.
+/////////////////////////////////////////////////////////
+linux:
+
+Tools environment: GOPATH=/home/escac/go
+Installing 7 tools at /home/escac/go/bin in module mode.
+  gotests
+  gomodifytags
+  impl
+  goplay
+  dlv
+  staticcheck
+  gopls
+
+windows:
+
+Tools environment: GOPATH=C:\Users\escac\go
+Installing 7 tools at C:\Users\escac\go\bin in module mode.
+  gotests
+  gomodifytags
+  impl
+  goplay
+  dlv
+  staticcheck
+  gopls
+/////////////////////////////////////////////////////////
+
+go.mod file tracks code's dependencies
+
+inside de user folder of de module you try to import:
+
+go mod edit -replace example.com/greetings=../greetings
+
+for testing:
+nameOfthefile_test.go
+
+go test
+
+go build
+
+go install
+
+go list -f '{{.Target}}'
+/home/escac/go/bin/hello2
+
+Linux & Mac
+$ export PATH=$PATH:/path/to/your/install/directory
+or
+$ go env -w GOBIN=/path/to/your/bin
+
+Windows
+$ set PATH=%PATH%;C:\path\to\your\install\directory
+or
+$ go env -w GOBIN=C:\path\to\your\bin
+/////////////////////////////////////////////////////////
+
+cd $WORK
+go work init
+go work use ./tools/ ./tools/gopls/
+
+go install
+
+go env | grep "GO111MODULE" The output GO111MODULE="" means it is on
+go env | grep "GOPROXY"
+go env | grep "GOPRIVATE"
+
+go get golang.org/x/tools/gopls@latest (DEPRECATED)
+
+go install golang.org/x/tools/gopls@latest (TO USE)
+
+
+If you have multiple go.mod file in one workspace, you can use the "go work" to add the folder.
+
+it needs Go 1.18+
+
+In the root path of the workspace
+$go work init
+$go work use [folder-name]
+go work use ./src/greetings
+go work use ./src/hello
+go work use ./src/hello2
+
+go env GOROOT
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
+go version
+
+go tool dist list

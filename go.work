@@ -1,0 +1,13 @@
+go 1.22.0
+
+use (
+	./src/gobook
+	./src/greetings
+	./src/hello
+	./src/hello2
+	./src/leetcode
+	./src/tourofgo
+	./src/excelize
+	./src/csv
+	./src/echarts
+)
