@@ -1,0 +1,4 @@
+Ecrivain 2 ecrit dans le fichier.
+Ecrivain 1 ecrit dans le fichier.
+Ecrivain 2 ecrit dans le fichier.
+Ecrivain 1 ecrit dans le fichier.
